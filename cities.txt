@@ -1,0 +1,11 @@
+cities,Boston,Boulder,Chicago,Disneyland,Miami,New Orleans,New York,Portland,San Francisco,Seattle
+Boston,0,-1,982,-1,-1,-1,215,-1,-1,-1
+Boulder,-1,0,-1,1023,-1,1307,-1,-1,1221,-1
+Chicago,982,-1,0,-1,-1,926,790,-1,-1,-1
+Disneyland,-1,1023,-1,0,-1,1882,-1,989,-1,-1
+Miami,-1,-1,-1,-1,0,864,1278,-1,-1,-1
+New Orleans,-1,1307,926,1882,864,0,1304,-1,-1,-1
+New York,215,-1,790,-1,1278,1304,0,-1,-1,-1
+Portland,-1,-1,-1,989,-1,-1,-1,0,635,173
+San Francisco,-1,1221,-1,-1,-1,-1,-1,635,0,807
+Seattle,-1,-1,-1,-1,-1,-1,-1,173,807,0
