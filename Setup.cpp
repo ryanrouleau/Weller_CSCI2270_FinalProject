@@ -17,7 +17,7 @@ Setup::~Setup()
     //dtor
 }
 
-void Setup::buildGraph(char *filename) {
+void Setup::buildGraph(char *filename) { // This function will build the graph based on the cities.txt file, similar to assignments 10/11
     string cityArray[10] = {"Boston","Boulder","Chicago","Disneyland","Miami","New Orleans","New York","Portland","San Francisco","Seattle"};
     for (int i = 0; i < 10; i++) {
         addVertex(cityArray[i]);
@@ -81,7 +81,7 @@ void Setup::buildGraph(char *filename) {
     }
 }
 
-void Setup::addVertex(string n){
+void Setup::addVertex(string n){ // Used to build the graph, from assignments 10/11
     bool found = false;
     for(int i = 0; i < vertices.size(); i++){
         if(vertices[i].name == n){
@@ -97,7 +97,7 @@ void Setup::addVertex(string n){
 }
 
 
-void Setup::addEdge(string v1, string v2, int weight){
+void Setup::addEdge(string v1, string v2, int weight){ // Used to build the graph, from assignments 10/11
 
     for(int i = 0; i < vertices.size(); i++){
         if(vertices[i].name == v1){
@@ -176,7 +176,7 @@ void Setup::shortestPath() {
         cout << "There is no longer a safe path." << endl;
     }
     else {
-        BFS(current, endingCity);
+        BFS(current, endingCity); // Calls a breadth-first search to find a short path
     }
 }
 
@@ -197,19 +197,19 @@ void Setup::BFS(vertex start, vertex end) {
         //cout << temp->name;
         path.pop();
         for (int j = 0; j < temp->adj.size(); j++) {
-            if (!temp->adj[j].v->visited && temp->adj[j].v->name != start.name && !temp->adj[j].blocked) {
+            if (!temp->adj[j].v->visited && temp->adj[j].v->name != start.name && !temp->adj[j].blocked) { // Checks if the city has been visited, if it is the same as the current city, or if the road has been blocked
                     temp->adj[j].v->distance = temp->distance + 1;
                     distance++;
                     //cout << temp->adj[j].weight << endl;
                     if (first == true) {
-                        possibleDistance = possibleDistance + temp->adj[j].weight;
+                        possibleDistance = possibleDistance + temp->adj[j].weight; // Calculates the "limit distance" that the final distance will be compared to
                     }
                     temp->adj[j].v->parent = temp;
                     temp->adj[j].v->visited = true;
                     path.push(temp->adj[j].v);
                     if (temp->adj[j].v->name == end.name) {
                         //cout << temp->adj[j].v->distance;
-                        while (!endPath.empty()) {
+                        while (!endPath.empty()) { // This will print out a potential path
                             vertex *tmp = endPath.front();
                             cout << tmp->name << "-->";
                             endPath.pop();
@@ -221,12 +221,12 @@ void Setup::BFS(vertex start, vertex end) {
                     }
             }
         }
-        if (path.empty() && !completed) {
+        if (path.empty() && !completed) { // If all of the possible roads have been blocked, the user loses th game
             cout << endl << "..." << endl << "Oh no! There are no more paths to the destination." << endl;
             cout << "It was a good effort, but I guess the zombies have a new snack." << endl << "Thanks for playing!" << endl;
             exit(0);
         }
-        if (completed == true) {
+        if (completed == true) { // Resets the visited booleans for the next time BFS is called
             for (int i = 0; i < vertices.size(); i++) {
                 vertices[i].visited = false;
                 if (first == true) {
@@ -238,36 +238,35 @@ void Setup::BFS(vertex start, vertex end) {
     }
 }
 
-void Setup::generateChallenge() {
+void Setup::generateChallenge() { // This function randomly generates a city to start at and a city to end at
     srand(time(NULL));
-    int s = rand()%10;
+    int s = rand()%10; // 10 cities possible
     int e = s;
     while (e == s) {
         srand(time(NULL));
         e = rand()%10;
     }
-    //cout << e <<" " << s << endl;
+
     startingCity = vertices[s];
     endingCity = vertices[e];
     startingCity.visited = true;
     current = startingCity;
     visited.push(current.name);
-    //cout << startingCity.name << endl;
-    //cout << endingCity.name << endl;
+
     cout << "The game has begun!" << endl;
     cout << "You must get from " << startingCity.name << " to " << endingCity.name << "." << endl;
     cout << "Good luck!" << endl << endl;
 }
 
-void Setup::displayCurrent() {
+void Setup::displayCurrent() { // Prints out current city
     cout << current.name << endl;
 }
 
-void Setup::displayEnd() {
+void Setup::displayEnd() { // Prints out ending city
     cout << endingCity.name << endl;
 }
 
-void Setup::displayVisited() {
+void Setup::displayVisited() { // Prints out the queue of the path traveled so far
     queue<string> temp = visited;
     string tmp = temp.front();
     cout << tmp;
@@ -280,16 +279,16 @@ void Setup::displayVisited() {
     cout << endl;
 }
 
-void Setup::displayDistance() {
+void Setup::displayDistance() { // Prints out the distance traveled
     cout << "You have traveled " << distTraveled << " miles." << endl;
     //cout << possibleDistance << endl;
 }
 
-void Setup::displayAdjacent(string name) {
+void Setup::displayAdjacent(string name) { // Displays all cities with open roads from input city
     cout << "Adjacent cities to " << name << ":" << endl;
     vertex temp;
     for (int i = 0; i < vertices.size(); i++) {
-        if (vertices[i].name == name) {
+        if (vertices[i].name == name) { // finds the city input
             for (int j = 0; j < vertices[i].adj.size(); j++) {
                 if (vertices[i].adj[j].weight != -1) {
                     cout << vertices[i].adj[j].v->name << " -- ";
@@ -301,7 +300,7 @@ void Setup::displayAdjacent(string name) {
     }
 }
 
-void Setup::newCity(string name) {
+void Setup::newCity(string name) { // Function for trying to get to a new city
     bool found = false;
     for (int i = 0; i < vertices.size(); i++) {
         if (vertices[i].name == current.name) {
@@ -314,7 +313,7 @@ void Setup::newCity(string name) {
             break;
         }
     }
-    if (found == false && name != current.name) {
+    if (found == false && name != current.name) { // Checks if the new city is adjacent to the current city
             //cout << current.name;
         cout << "No safe path to " << name << " from " << current.name <<"." <<endl;
     }
@@ -322,8 +321,8 @@ void Setup::newCity(string name) {
         cout << "You're already in " << current.name << "." << endl;
     }
     else {
-        int eventNo = generateEvent(name);
-        if (eventNo == 0 || eventNo == 4 || eventNo == 5) {
+        int eventNo = generateEvent(name); // Generates a possible event that may block the path
+        if (eventNo == 0 || eventNo == 4 || eventNo == 5) { // If no blockage, moves to new city
             for (int i = 0; i < vertices.size(); i++) {
                 if (vertices[i].name == name) {
                     for (int j = 0; j < current.adj.size(); j ++) {
@@ -337,7 +336,7 @@ void Setup::newCity(string name) {
                 }
             }
             visited.push(current.name);
-            if (current.name == endingCity.name) {
+            if (current.name == endingCity.name) { // Checks if you've beat the game and spits out stats
                 cout <<endl << endl << endl <<  "Congratulations!" << endl;
                 cout << "You reached the destination." << endl;
                 cout << endl << "How did you do?" << endl << endl;
@@ -358,9 +357,8 @@ void Setup::newCity(string name) {
                 exit(0);
             }
         }
-        else {
-            //cout << current.name;
-            for (int i = 0; i < vertices.size(); i++) {
+        else { // If there is an event
+            for (int i = 0; i < vertices.size(); i++) { // This will block the "edges" between the cities
                 if (vertices[i].name == current.name) {
                     for (int j = 0; j < current.adj.size(); j ++) {
                         if (current.adj[j].v->name.compare(name) == 0) {
@@ -391,14 +389,14 @@ void Setup::newCity(string name) {
             for (int i = 0; i < vertices.size(); i++) {
                 vertices[i].ID = -1;
             }
-            assignDistricts();
+            assignDistricts(); // Calculates a new possible path
             cout << endl << "Available path: " << endl;
             shortestPath();
         }
     }
 }
 
-int Setup::generateEvent(string cityName) {
+int Setup::generateEvent(string cityName) { // Randomly generates different possibilities to impair the traveling
     srand(time(NULL));
     int eventNo = rand()%6;
     if (eventNo == 0 || eventNo == 4 || eventNo == 5) {
