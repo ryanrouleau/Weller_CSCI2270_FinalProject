@@ -118,7 +118,7 @@ void Setup::addEdge(string v1, string v2, int weight){ // Used to build the grap
     }
 }
 
-void Setup::displayEdges(){
+void Setup::displayEdges(){//This function is for testing purposes
     //loop through all vertices and adjacent vertices
     for(int i = 0; i < vertices.size(); i++){
         cout<<vertices[i].ID << ":" << vertices[i].name<<" --> ";
@@ -134,7 +134,7 @@ void Setup::displayEdges(){
     }
 }
 
-void Setup::assignDistricts() {
+void Setup::assignDistricts() { // This function is for testing purposes
     int IDcount = 0;
     for (int i = 0; i < vertices.size(); i++) {
         if (vertices[i].ID == -1) {
@@ -157,20 +157,6 @@ void Setup::assignDistricts() {
 }
 
 void Setup::shortestPath() {
-    /*vertex start;
-    vertex ender;
-    bool foundS = false;
-    bool foundE = false;
-    for (int i = 0; i < vertices.size(); i++) {
-        if (vertices[i].name.compare(startingCity) == 0) {
-            start = vertices[i];
-            foundS = true;
-        }
-        else if (vertices[i].name.compare(endingCity) == 0) {
-            ender = vertices[i];
-            foundE = true;
-        }
-    }*/
 
     if (current.ID != endingCity.ID || startingCity.ID != endingCity.ID) {
         cout << "There is no longer a safe path." << endl;
@@ -186,21 +172,18 @@ void Setup::BFS(vertex start, vertex end) {
     start.distance = 0;
     int distance = 0;
     int smallest = 1500;
-    queue<vertex*> endPath;
+    queue<vertex*> endPath; // These queues are used to store the path
     queue<vertex*> path;
     path.push(&start);
     while (!path.empty()) {
         vertex *temp = new vertex;
         temp = path.front();
-        //adjVertex temp2 = path.front()->a;
         endPath.push(temp);
-        //cout << temp->name;
         path.pop();
         for (int j = 0; j < temp->adj.size(); j++) {
             if (!temp->adj[j].v->visited && temp->adj[j].v->name != start.name && !temp->adj[j].blocked) { // Checks if the city has been visited, if it is the same as the current city, or if the road has been blocked
                     temp->adj[j].v->distance = temp->distance + 1;
                     distance++;
-                    //cout << temp->adj[j].weight << endl;
                     if (first == true) {
                         possibleDistance = possibleDistance + temp->adj[j].weight; // Calculates the "limit distance" that the final distance will be compared to
                     }
@@ -208,7 +191,6 @@ void Setup::BFS(vertex start, vertex end) {
                     temp->adj[j].v->visited = true;
                     path.push(temp->adj[j].v);
                     if (temp->adj[j].v->name == end.name) {
-                        //cout << temp->adj[j].v->distance;
                         while (!endPath.empty()) { // This will print out a potential path
                             vertex *tmp = endPath.front();
                             cout << tmp->name << "-->";
@@ -221,7 +203,7 @@ void Setup::BFS(vertex start, vertex end) {
                     }
             }
         }
-        if (path.empty() && !completed) { // If all of the possible roads have been blocked, the user loses th game
+        if (path.empty() && !completed) { // If all of the possible roads have been blocked, the user loses the game
             cout << endl << "..." << endl << "Oh no! There are no more paths to the destination." << endl;
             cout << "It was a good effort, but I guess the zombies have a new snack." << endl << "Thanks for playing!" << endl;
             exit(0);
@@ -281,7 +263,6 @@ void Setup::displayVisited() { // Prints out the queue of the path traveled so f
 
 void Setup::displayDistance() { // Prints out the distance traveled
     cout << "You have traveled " << distTraveled << " miles." << endl;
-    //cout << possibleDistance << endl;
 }
 
 void Setup::displayAdjacent(string name) { // Displays all cities with open roads from input city
@@ -314,7 +295,6 @@ void Setup::newCity(string name) { // Function for trying to get to a new city
         }
     }
     if (found == false && name != current.name) { // Checks if the new city is adjacent to the current city
-            //cout << current.name;
         cout << "No safe path to " << name << " from " << current.name <<"." <<endl;
     }
     else if (name == current.name) {
@@ -362,7 +342,6 @@ void Setup::newCity(string name) { // Function for trying to get to a new city
                 if (vertices[i].name == current.name) {
                     for (int j = 0; j < current.adj.size(); j ++) {
                         if (current.adj[j].v->name.compare(name) == 0) {
-                            //cout << vertices[i].adj[j].v->name << endl;
                             vertices[i].adj[j].weight = -1;
                             vertices[i].adj[j].blocked = true;
                             current.adj[j].weight = -1;

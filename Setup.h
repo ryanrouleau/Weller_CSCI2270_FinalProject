@@ -15,7 +15,7 @@ struct adjVertex{
 
 struct vertex{
     int ID = -1;
-    vertex *parent;
+    vertex *parent; // Not used for this project
     string name;
     int district;
     bool visited =false;
@@ -29,31 +29,29 @@ class Setup
     public:
         Setup();
         ~Setup();
-        void buildGraph(char *filename);
-        void addEdge(string v1, string v2,int weight);
-        void addVertex(string name);
-        void displayEdges();
-        void shortestPath();
-        int generateEvent(string cityName);
-        void generateChallenge();
-        void assignDistricts();
-        void BFS(vertex start, vertex end);
-        void newCity();
-        void displayCurrent();
-        void displayVisited();
-        void displayDistance();
-        void displayAdjacent(string name);
-        void newCity(string name);
-        void displayEnd();
+        void buildGraph(char *filename); // Builds the graph for the game
+        void addEdge(string v1, string v2,int weight); // Used in building the graph
+        void addVertex(string name); // Used in building the graph
+        void displayEdges(); // For testing
+        void shortestPath(); // For testing
+        int generateEvent(string cityName); // Randomly chooses an event that may block the path
+        void generateChallenge(); // Randomly decides two cities
+        void assignDistricts(); // For testing
+        void BFS(vertex start, vertex end); // Finds the shortest/available path to travel
+        void displayCurrent(); // Prints current city
+        void displayVisited(); // Prints path traveled
+        void displayDistance(); // Prints distance traveled
+        void displayAdjacent(string name); // Prints cities available to travel to from an input
+        void newCity(string name); // Allows the user to move to a new city
+        void displayEnd(); // Prints out the ending city
 
     protected:
     private:
-        vector<vertex> vertices;
-        vertex * findVertex(string name);
-        vertex startingCity;
-        vertex endingCity;
-        vertex current;
-        queue<string>visited;
+        vector<vertex> vertices; // Array of cities as vertex
+        vertex startingCity; // Stores start city
+        vertex endingCity; // Stores end city
+        vertex current; // Stores current city
+        queue<string>visited; // Stores path
         int distTraveled = 0;
         int possibleDistance = 0;
         bool first = true;
