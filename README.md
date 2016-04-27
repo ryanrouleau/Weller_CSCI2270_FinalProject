@@ -15,9 +15,11 @@ How to Play:
 
 How to Run from Terminal:
 
-  I highly recommend to run this through a linux environment or a downloaded terminal that simulates a linux environment, like GitBash.
+  I highly recommend to run this through a linux environment or a downloaded terminal that simulates a linux environment.
   
   Linux: Download the files cities.txt, Setup.h, Setup.cpp, and TheRoad.cpp into a folder. Open the terminal, and change directory "cd directoryName" until within the folder where the files are saved. Use "ls" to see which filenames are in the current directory. Once in the proper folder, type "g++ Setup.h Setup.cpp TheRoad.cpp -o TheRoad" to create an executable version of the game. Then, to play, type "./TheRoad" and it will open in the terminal.
+  
+  This will ** only work if you're in, for example, the terminal in the VM. An alternative option is to download the project files and run from your IDE.
 
 
 Dependencies: 
@@ -26,7 +28,7 @@ Dependencies:
 
 System Requirements:
 
-  As stated above, considering this is a console application, it is easiest executed through a Linux environment. For Windows or mac users, I suggest downloading Git/Git Bash and then following the instructions above to compile and run the program.
+  As stated above, considering this is a console application, it is easiest executed through a Linux environment. 
 
 
 Group Members:
