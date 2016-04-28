@@ -1,5 +1,5 @@
 # Weller_CSCI2270_FinalProject
-Description:
+#Description:
 
   I have written a console input/output game called "The Road" (name after Cormac McCarthy's apoctalyptic novel) which is an extension of Assignments 10/11. 
 
@@ -8,12 +8,12 @@ Description:
   The application takes an input file "cities.txt" which is similar to the "bestCities.txt" file used in Assignment 11, but with some modifcations, and builds a graph of cities from it. Some of the cities' edges are initialized to -1, meaning there is no safe path between them initially. The game gives you a long list of options in the form of a menu, to help you navigate the cities. The primary data structure used in the game is a graph, which is modified by randomly generated events (i.e. some "roads" being blocked) and also the use of queues and pointers to keep track of the path traveled. 
   
   
-How to Play:
+#How to Play:
 
   The program will generate a random starting city and ending city for you try to navigate between. It also provides you with a menu to help. The menu allows you to print the current city you're in and the ending city you are trying to get to. It will also print out which cities you've been to and the distance you've traveled. These are mainly for your records. It will also print out an available path for you to the final city (this is not necessarily the shortest, distance-wise though, and will change depending on your current city). You may see which adjacent, not-blocked cities are available to travel to as well, to any city. This may help you pick a shorter path. Finally, the menu allows you to trvel to the next city, which may generate a problem which causes the path to be blocked. If this happens, then you will need to try a new path. 
 
 
-How to Run from Terminal:
+#How to Run from Terminal:
 
   I highly recommend to run this through a linux environment or a downloaded terminal that simulates a linux environment.
   
@@ -22,22 +22,22 @@ How to Run from Terminal:
   This will ** only work if you're in, for example, the terminal in the VM. An alternative option is to download the project files and run from your IDE.
 
 
-Dependencies: 
+#Dependencies: 
   No dependencies.
 
 
-System Requirements:
+#System Requirements:
 
   As stated above, considering this is a console application, it is easiest executed through a Linux environment. 
 
 
-Group Members:
+#Group Members:
   N/A
   
   
-Contributors:
+#Contributors:
   N/A
   
   
-Open Issues:
+#Open Issues:
   No current open issues or bugs.
