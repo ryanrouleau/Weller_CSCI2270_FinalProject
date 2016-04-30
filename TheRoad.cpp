@@ -20,8 +20,8 @@ int main() {
     newGame.shortestPath(); // Offers the user a potential path
     cout << endl;
 
-    int choice = 0;
-    while (choice != 8) { // Menu
+    string choice = "0";
+    while (choice != "8") { // Menu
         cout << "1. Print current city" << endl;
         cout << "2. Print ending city" << endl;
         cout << "3. Display visited cities" << endl;
@@ -33,19 +33,19 @@ int main() {
         cin >> choice;
         cout << endl;
 
-        if (choice == 1) {
+        if (choice == "1") {
             newGame.displayCurrent(); // Prints out current city
         }
-        else if (choice == 2) {
+        else if (choice == "2") {
             newGame.displayEnd(); // Prints out the end city if the user forgets
         }
-        else if (choice == 3) {
+        else if (choice == "3") {
             newGame.displayVisited(); // Prints out the cities you have gone through so far
         }
-        else if (choice == 4) {
+        else if (choice == "4") {
             newGame.displayDistance(); // Prints out the distance you have traveled.
         }
-        else if (choice == 5) {
+        else if (choice == "5") {
             string name;
             cout << "Enter the city you would like adjacent cities to:" << endl; // The user may check possible cities
             cin.ignore();
@@ -53,10 +53,10 @@ int main() {
             cout << endl;
             newGame.displayAdjacent(name); // Displays all cities with open roads to the input city
         }
-        else if (choice == 6) {
+        else if (choice == "6") {
             newGame.shortestPath(); // Provides an available/potential path
         }
-        else if (choice == 7) {
+        else if (choice == "7") {
             string name;
             cout << "Enter the city you would like to travel to:" << endl;
             cin.ignore();
